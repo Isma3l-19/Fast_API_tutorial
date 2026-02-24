@@ -16,7 +16,18 @@ products = [
     Product(id=4, name="table",description= "a wooden table", price=500, quantity=36)
 ]
 
-# get products
+# get all the products
 @app.get("/products")
 def get_all_products():
     return products
+
+# getting product by id
+@app.get("/product/{id}")
+def get_product_by_id(id: int):
+    for product in products:
+        if product.id == id:
+            return product
+        
+    return "Product not found"
+
+
