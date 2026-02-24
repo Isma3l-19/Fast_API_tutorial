@@ -30,4 +30,8 @@ def get_product_by_id(id: int):
         
     return "Product not found"
 
-
+# Adding products
+@app.post("/product")
+def add_product(product: Product):
+    products.append(product)
+    return product
