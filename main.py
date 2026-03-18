@@ -20,11 +20,24 @@ products = [
     Product(id=4, name="table",description= "a wooden table", price=500, quantity=36)
 ]
 
+# Init db
+def init_db():
+    db = session()
+
+    count  = db.query(database_models.Product).count
+
+    if count == 0:
+        for product in products:
+            db.add(database_models.Product(**product.model_dump()))
+        db.commit()
+
+init_db()
+
 # get all the products
 @app.get("/products")
 def get_all_products():
-    db = session()
-    db.query()
+    # db = session()
+    # db.query()
     return products
 
 # getting product by id
