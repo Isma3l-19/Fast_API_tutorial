@@ -63,7 +63,7 @@ def add_product(product: Product, db: Session = Depends(get_db)):
 
 
 # updating products
-@app.put("/products")
+@app.put("/products/{id}")
 def update_product(id: int, product: Product, db: Session = Depends(get_db)):
     db_product = db.query(database_models.Product).filter(database_models.Product.id == id).first()
     if db_product:
@@ -78,7 +78,7 @@ def update_product(id: int, product: Product, db: Session = Depends(get_db)):
 
 
 # deleting products
-@app.delete("/delete_product")
+@app.delete("/delete_product/{id}")
 def delete_product(id: int, db: Session = Depends(get_db)):
     db_product = db.query(database_models.Product).filter(database_models.Product.id == id).first()
     if db_product:
